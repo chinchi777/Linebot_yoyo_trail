@@ -29,24 +29,7 @@ def cityData():
           
               
     }
-    # sqlNNK ='''SELECT * FROM `tabletrail` WHERE 所在地 LIKE '新北市%' OR 所在地 LIKE '台北市%' OR 所在地 LIKE '基隆市%' HAVING 步道難度 ='低' ORDER BY 到過人數 DESC '''
-    # sqlTH ='''SELECT * FROM `tabletrail` WHERE 所在地 LIKE '桃園市%' OR 所在地 LIKE '新竹市%' OR 所在地 LIKE '新竹縣%' HAVING 步道難度 ='低' ORDER BY 到過人數 DESC '''
-    # sqlY ='''SELECT * FROM `tabletrail` WHERE 所在地 LIKE '宜蘭縣%' HAVING 步道難度 ='低' ORDER BY 到過人數 DESC '''
-    # sqlM ='''SELECT * FROM `tabletrail` WHERE 所在地 LIKE '苗栗縣%' HAVING 步道難度 ='低' ORDER BY 到過人數 DESC '''
-    # sqlTN ='''SELECT * FROM `tabletrail` WHERE 所在地 LIKE '台中市%' OR 所在地 LIKE '南投縣%' HAVING 步道難度 ='低' ORDER BY 到過人數 DESC '''
-    # sqlCW ='''SELECT * FROM `tabletrail` WHERE 所在地 LIKE '彰化縣%' OR 所在地 LIKE '雲林縣%' HAVING 步道難度 ='低' ORDER BY 到過人數 DESC '''
-    # sqlC ='''SELECT * FROM `tabletrail` WHERE 所在地 LIKE '嘉義縣%' OR 所在地 LIKE '嘉義市%' HAVING 步道難度 ='低' ORDER BY 到過人數 DESC '''
-    # sqlTn ='''SELECT * FROM `tabletrail` WHERE 所在地 LIKE '台南市%' HAVING 步道難度 ='低' ORDER BY 到過人數 DESC '''
-    # sqlKP ='''SELECT * FROM `tabletrail` WHERE 所在地 LIKE '高雄市%' OR 所在地 LIKE '屏東縣%' HAVING 步道難度 ='低' ORDER BY 到過人數 DESC '''
-    # sqlHT ='''SELECT * FROM `tabletrail` WHERE 所在地 LIKE '花蓮縣%' OR 所在地 LIKE '台東縣%' HAVING 步道難度 ='低' ORDER BY 到過人數 DESC '''
-    # sqlI ='''SELECT * FROM `tabletrail` WHERE 所在地 LIKE '連江縣%' OR 所在地 LIKE '金門縣%' OR 所在地 LIKE '澎湖縣%' HAVING 步道難度 ='低' ORDER BY 到過人數 DESC '''
     
-    # sqlI ='''SELECT * FROM `tabletrail` WHERE 所在地 LIKE '連江縣%' OR 所在地 LIKE '金門縣%' OR 所在地 LIKE '澎湖縣%' HAVING 步道難度 ='低' ORDER BY 到過人數 DESC '''
-    # sqlI ='''SELECT * FROM `tabletrail` WHERE 所在地 LIKE '連江縣%' OR 所在地 LIKE '金門縣%' OR 所在地 LIKE '澎湖縣%' HAVING 步道難度 ='低' ORDER BY 到過人數 DESC '''
-    # sqlI ='''SELECT * FROM `tabletrail` WHERE 所在地 LIKE '連江縣%' OR 所在地 LIKE '金門縣%' OR 所在地 LIKE '澎湖縣%' HAVING 步道難度 ='低' ORDER BY 到過人數 DESC '''
-    # sqlI ='''SELECT * FROM `tabletrail` WHERE 所在地 LIKE '連江縣%' OR 所在地 LIKE '金門縣%' OR 所在地 LIKE '澎湖縣%' HAVING 步道難度 ='低' ORDER BY 到過人數 DESC '''
-
-# print(result[0])
  
       
 
@@ -89,14 +72,7 @@ def sendCarousel_trail(event):  #轉盤樣板
                                 label='定位請點選這裡',
                                 text='@抓取定位'
                             ),
-                            # URITemplateAction(
-                            #     label='連結pchome網頁',
-                            #     uri='https://www.pchome.com.tw/'
-                            # ),
-                            # PostbackTemplateAction(
-                            #     label='回傳訊息三',
-                            #     data='action=sell&item=火鍋'
-                            # ),
+                            
                         ]
                     )
                 ]
@@ -260,6 +236,50 @@ def sendDiff(event):  #難度轉盤
     except:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
 
+def sendAnaly(event):  #分析轉盤
+    try:
+        message = TemplateSendMessage(
+            alt_text='資料分析',
+            template=CarouselTemplate(
+                columns=[
+                    CarouselColumn(
+                        thumbnail_image_url='https://i.pinimg.com/564x/94/83/a3/9483a30a072972fa347e98ef1373f052.jpg',
+ 					    #thumbnail_image_url=baseurl +'蘋果.jpg',
+                        title='步道難易數量',
+                        text='低難度步道有近1200條可選擇，新手可以多多嘗試再慢慢進階',
+                        actions=[
+                            URIAction(label='看分析圖大圖',url='https://i.pinimg.com/564x/ae/94/d9/wiufn4972oih3974rheurnjf8746d84bd.jpg')
+                        ]
+
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://i.pinimg.com/564x/33/c1/41/33c14196ea7c90630da55a3273b3079a.jpg',
+                        title='步道分區數量',
+                        text='新北市瑞芳區步道數量就有40多條，住在北部的民眾可多去走走',
+                        actions=[
+                            URIAction(label='看分析圖大圖',url='https://i.pinimg.com/564x/ae/94/d9/ou3u4895ofhyh3u4mfklgo484hfkfd93k.jpg')
+                        ]
+
+                    ),
+ 					
+                    CarouselColumn(
+                        thumbnail_image_url='https://i.pinimg.com/564x/ae/94/d9/ae94d9f88e89db041b04c28cbb2cc3ed.jpg',
+						#thumbnail_image_url=baseurl +'蘋果.jpg',
+                        title='高難度步道分佈',
+                        text='高難度步道在全台分佈的數量跟區域，北部佔比較高',
+                        actions=[
+                            URIAction(label='看分析圖大圖',url='https://i.pinimg.com/564x/ae/94/d9/siwu4847ehdfk947ehdkf4734jjk4hhfn.jpg')
+                        ]
+
+                    ),                            
+                ]
+            )
+        )
+    
+        line_bot_api.reply_message(event.reply_token,message)
+    except:
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
+
 def buildBubble(key):#設定bubble的形式把資料丟進去
         queries = cityData()
         conn = pymysql.connect(host='localhost',port=3306,db='projectpython',user='root',passwd='cc19850119',charset='utf8')
@@ -363,15 +383,4 @@ def sendFlex(event, key):  #彈性配置
     except:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
 
-# def manageForm(event, mtext):
-#     try:
-#         flist = mtext[3:].split('/')
-#         text1 = '姓名：' + flist[0] + '\n'
-#         text1 += '日期：' + flist[1] + '\n'
-#         text1 += '包廂：' + flist[2]
-#         message = TextSendMessage(
-#             text = text1
-#         )
-#         line_bot_api.reply_message(event.reply_token,message)
-#     except:
-#         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
+
